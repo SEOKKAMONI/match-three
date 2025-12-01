@@ -1,19 +1,14 @@
 import { createAction, createReducer, createSelector } from "@reduxjs/toolkit";
-import * as R from "ramda";
 
 export const Status = {
   COLLAPSING: "COLLAPSING",
 };
 
-/* 
-
-
-*/
 
 const slice = (state) => state.matchThree;
 const board = createSelector([slice], (slice) => slice.board);
-const columnCount = createSelector([board], R.length);
-const rowCount = createSelector([board], R.pipe(R.head, R.length));
+const columnCount = createSelector([board], (board) => board?.length ?? 0);
+const rowCount = createSelector([board], (board) => board?.[0]?.length ?? 0);
 const grabbed = createSelector([slice], (slice) => slice.grabbed);
 const status = createSelector([slice], (slice) => slice.status);
 const selectors = {
@@ -24,10 +19,6 @@ const selectors = {
   status,
 };
 
-/*
-
-
-*/
 
 const actions = {
   setBoard: createAction("[match-three] SET_BOARD"),
@@ -37,11 +28,6 @@ const actions = {
   grab: createAction("[match-three] GRAB"),
   drop: createAction("[match-three] DROP"),
 };
-
-/* 
-
-
-*/
 
 const reducer = createReducer(
   {
@@ -61,11 +47,6 @@ const reducer = createReducer(
     },
   }
 );
-
-/* 
-
-
-*/
 
 export const matchThree = {
   reducer,

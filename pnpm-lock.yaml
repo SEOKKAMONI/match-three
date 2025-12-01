@@ -35,12 +35,12 @@ importers:
       immutable:
         specifier: ^4.0.0-rc.12
         version: 4.3.7
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
       nanoid:
         specifier: ^4.0.2
         version: 4.0.2
-      ramda:
-        specifier: ^0.27.1
-        version: 0.27.2
       react:
         specifier: ^16.14.0
         version: 16.14.0
@@ -4229,6 +4229,9 @@ packages:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
     engines: {node: '>=8'}
 
+  lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+
   lodash._reinterpolate@3.0.0:
     resolution: {integrity: sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==}
 
@@ -5316,9 +5319,6 @@ packages:
 
   raf@3.4.1:
     resolution: {integrity: sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==}
-
-  ramda@0.27.2:
-    resolution: {integrity: sha512-SbiLPU40JuJniHexQSAgad32hfwd+DRUdwF2PlVuI5RZD0/vahUco7R8vD86J/tcEKKF9vZrUVwgtmGCqlCKyA==}
 
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
@@ -12085,6 +12085,8 @@ snapshots:
     dependencies:
       p-locate: 4.1.0
 
+  lodash-es@4.17.21: {}
+
   lodash._reinterpolate@3.0.0: {}
 
   lodash.debounce@4.0.8: {}
@@ -13334,8 +13336,6 @@ snapshots:
   raf@3.4.1:
     dependencies:
       performance-now: 2.1.0
-
-  ramda@0.27.2: {}
 
   randombytes@2.1.0:
     dependencies:

@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
 import { motion } from "framer-motion";
-import * as R from "ramda";
+import { isEqual } from "lodash-es";
 import React, { useState } from "react";
 import { Flipped } from "react-flip-toolkit";
 import { Status } from "../match-three";
@@ -36,7 +36,7 @@ export const GameBoardSlot = (props) => {
     status,
   } = useMatchThree();
   const isCollapsing = status === Status.COLLAPSING;
-  const isGrabbed = R.equals(grabbed, [columnIndex, rowIndex]);
+  const isGrabbed = isEqual(grabbed, [columnIndex, rowIndex]);
   const [isHovering, setIsHovering] = useState(false);
 
   const variant = isCollapsing

@@ -1,5 +1,4 @@
 import { createAction } from "@reduxjs/toolkit";
-import { not } from "ramda";
 import { delay, fork, put, select, take } from "redux-saga/effects";
 import {
   clear,
@@ -46,7 +45,7 @@ function* swapFlow() {
 function* cascadeFlow() {
   yield put(setStatus(Status.COLLAPSING));
 
-  while (not(isStable(yield select(board)))) {
+  while (!isStable(yield select(board))) {
     yield delay(1000 / 3);
 
     yield put(setBoard(clear(yield select(board))));
