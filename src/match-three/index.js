@@ -1,2 +1,2 @@
-export * from "./match-three";
-export * from "./middleware";
+export * from "./atoms";
+export * from "./board";

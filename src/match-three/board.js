@@ -1,8 +1,12 @@
-import { zip, zipWith, times, isNil, memoize, sortBy, flatten, intersection } from "lodash-es";
+import { zipWith, times, isNil, memoize, sortBy, flatten, intersection } from "lodash-es";
 import { createId, distance, randomNth } from "../utility";
 
 const MATCHING_SIZE = 3;
 const BOMB_RADIUS = 1.5;
+
+export const Status = {
+  COLLAPSING: "COLLAPSING",
+};
 
 export const Colors = {
   Red: "red",
@@ -11,6 +15,7 @@ export const Colors = {
   Green: "green",
   Purple: "purple",
 };
+
 export const COLORS = Object.values(Colors);
 
 const createRandomColor = () => {
@@ -24,7 +29,7 @@ export const ItemType = {
 };
 
 const createRandomItemType = () => {
-  return Math.random() <= 1 / 20 ? randomNth(Object.values(ItemType)) : undefined;
+  return Math.random() <= 1 / 20 ? randomNth(Object.values(ItemType)) : null;
 };
 
 export const createRandomItem = () => ({

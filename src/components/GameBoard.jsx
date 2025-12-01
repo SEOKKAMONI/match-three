@@ -8,9 +8,8 @@ import { useSize } from "./useSize";
 import { useStylesCursor } from "./useStylesCursor";
 
 export const GameBoard = () => {
-  const matchThree = useMatchThree();
+  const { board, columnCount, rowCount } = useMatchThree();
   const cursorClassName = useStylesCursor();
-  const { board, columnCount, rowCount } = matchThree;
 
   const ref = useRef();
   const [boardWidth] = useSize(ref);

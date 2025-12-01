@@ -10,19 +10,16 @@ importers:
     dependencies:
       '@material-ui/core':
         specifier: ^4.11.0
-        version: 4.12.4(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+        version: 4.12.4(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       '@material-ui/icons':
         specifier: ^4.9.1
-        version: 4.11.3(@material-ui/core@4.12.4(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-      '@reduxjs/toolkit':
-        specifier: ^1.4.0
-        version: 1.9.7(react-redux@7.2.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(react@16.14.0)
+        version: 4.11.3(@material-ui/core@4.12.4(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       '@testing-library/jest-dom':
         specifier: ^4.2.4
         version: 4.2.4
       '@testing-library/react':
         specifier: ^9.3.2
-        version: 9.5.0(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+        version: 9.5.0(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       '@testing-library/user-event':
         specifier: ^7.1.2
         version: 7.2.1(@testing-library/dom@6.16.0)
@@ -35,6 +32,9 @@ importers:
       immutable:
         specifier: ^4.0.0-rc.12
         version: 4.3.7
+      jotai:
+        specifier: ^2.15.1
+        version: 2.15.1(@babel/core@7.9.0)(@babel/template@7.27.2)(react@16.14.0)
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -53,18 +53,9 @@ importers:
       react-flip-toolkit:
         specifier: ^7.0.12
         version: 7.2.4(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-      react-redux:
-        specifier: ^7.2.1
-        version: 7.2.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       react-scripts:
         specifier: 3.4.1
         version: 3.4.1(eslint@6.8.0)(react@16.14.0)(typescript@3.9.10)
-      redux:
-        specifier: ^4.0.5
-        version: 4.2.1
-      redux-saga:
-        specifier: ^1.1.3
-        version: 1.4.2
     devDependencies:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
@@ -1139,35 +1130,6 @@ packages:
     resolution: {integrity: sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==}
     engines: {node: '>= 6'}
 
-  '@redux-saga/core@1.4.2':
-    resolution: {integrity: sha512-nIMLGKo6jV6Wc1sqtVQs1iqbB3Kq20udB/u9XEaZQisT6YZ0NRB8+4L6WqD/E+YziYutd27NJbG8EWUPkb7c6Q==}
-
-  '@redux-saga/deferred@1.3.1':
-    resolution: {integrity: sha512-0YZ4DUivWojXBqLB/TmuRRpDDz7tyq1I0AuDV7qi01XlLhM5m51W7+xYtIckH5U2cMlv9eAuicsfRAi1XHpXIg==}
-
-  '@redux-saga/delay-p@1.3.1':
-    resolution: {integrity: sha512-597I7L5MXbD/1i3EmcaOOjL/5suxJD7p5tnbV1PiWnE28c2cYiIHqmSMK2s7us2/UrhOL2KTNBiD0qBg6KnImg==}
-
-  '@redux-saga/is@1.2.1':
-    resolution: {integrity: sha512-x3aWtX3GmQfEvn8dh0ovPbsXgK9JjpiR24wKztpGbZP8JZUWWvUgKrvnWZ/T/4iphOBftyVc9VrIwhAnsM+OFA==}
-
-  '@redux-saga/symbols@1.2.1':
-    resolution: {integrity: sha512-3dh+uDvpBXi7EUp/eO+N7eFM4xKaU4yuGBXc50KnZGzIrR/vlvkTFQsX13zsY8PB6sCFYAgROfPSRUj8331QSA==}
-
-  '@redux-saga/types@1.3.1':
-    resolution: {integrity: sha512-YRCrJdhQLobGIQ8Cj1sta3nn6DrZDTSUnrIYhS2e5V590BmfVDleKoAquclAiKSBKWJwmuXTb+b4BL6rSHnahw==}
-
-  '@reduxjs/toolkit@1.9.7':
-    resolution: {integrity: sha512-t7v8ZPxhhKgOKtU+uyJT13lu4vL7az5aFi4IdoDs/eS548edn2M8Ik9h8fxgvMjGoAUVFSt6ZC1P5cWmQ014QQ==}
-    peerDependencies:
-      react: ^16.9.0 || ^17.0.0 || ^18
-      react-redux: ^7.2.1 || ^8.0.2
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-redux:
-        optional: true
-
   '@rolldown/pluginutils@1.0.0-beta.27':
     resolution: {integrity: sha512-+d0F4MKMCbeVUJwG96uQ4SgAznZNSq93I3V+9NHA4OpvqG8mRCpGdKmK8l/dl02h2CCDHwW2FqilnTyDcAnqjA==}
 
@@ -1381,11 +1343,6 @@ packages:
   '@types/glob@7.2.0':
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
 
-  '@types/hoist-non-react-statics@3.3.7':
-    resolution: {integrity: sha512-PQTyIulDkIDro8P+IHbKCsw7U2xxBYflVzW/FgWdCAePD9xGSidgA76/GeJ6lBKoblyhf9pBY763gbrN+1dI8g==}
-    peerDependencies:
-      '@types/react': '*'
-
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
 
@@ -1416,16 +1373,10 @@ packages:
     peerDependencies:
       '@types/react': ^19.2.0
 
-  '@types/react-redux@7.1.34':
-    resolution: {integrity: sha512-GdFaVjEbYv4Fthm2ZLvj1VSCedV7TqE5y1kNwnjSdBOTXuRSgowux6J8TAct15T3CKBr63UMk+2CO7ilRhyrAQ==}
-
   '@types/react-transition-group@4.4.12':
     resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
     peerDependencies:
       '@types/react': '*'
-
-  '@types/react@19.2.7':
-    resolution: {integrity: sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==}
 
   '@types/stack-utils@1.0.1':
     resolution: {integrity: sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==}
@@ -3525,9 +3476,6 @@ packages:
   immer@1.10.0:
     resolution: {integrity: sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==}
 
-  immer@9.0.21:
-    resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
-
   immutable@4.3.7:
     resolution: {integrity: sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==}
 
@@ -4039,6 +3987,24 @@ packages:
     resolution: {integrity: sha512-YvkBL1Zm7d2B1+h5fHEOdyjCG+sGMz4f8D86/0HiqJ6MB4MnDc8FgP5vdWsGnemOQro7lnYo8UakZ3+5A0jxGw==}
     engines: {node: '>= 6'}
     hasBin: true
+
+  jotai@2.15.1:
+    resolution: {integrity: sha512-yHT1HAZ3ba2Q8wgaUQ+xfBzEtcS8ie687I8XVCBinfg4bNniyqLIN+utPXWKQE93LMF5fPbQSVRZqgpcN5yd6Q==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@babel/core': '>=7.0.0'
+      '@babel/template': '>=7.0.0'
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   js-tokens@3.0.2:
     resolution: {integrity: sha512-RjTcuD4xjtthQkaWH7dFlH85L+QaVtSoOyGdZ3g6HFhS9dFNDfLyqgm2NFe2X6cQpeFmt0452FJjFG5UameExg==}
@@ -5372,18 +5338,6 @@ packages:
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
-  react-redux@7.2.9:
-    resolution: {integrity: sha512-Gx4L3uM182jEEayZfRbI/G11ZpYdNAnBs70lFVMNdHJI76XYtR+7m0MN+eAs7UHBPhWXcnFPaS+9owSCJQHNpQ==}
-    peerDependencies:
-      react: ^16.8.3 || ^17 || ^18
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-
   react-refresh@0.17.0:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
@@ -5452,17 +5406,6 @@ packages:
   redent@3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
     engines: {node: '>=8'}
-
-  redux-saga@1.4.2:
-    resolution: {integrity: sha512-QLIn/q+7MX/B+MkGJ/K6R3//60eJ4QNy65eqPsJrfGezbxdh1Jx+37VRKE2K4PsJnNET5JufJtgWdT30WBa+6w==}
-
-  redux-thunk@2.4.2:
-    resolution: {integrity: sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==}
-    peerDependencies:
-      redux: ^4
-
-  redux@4.2.1:
-    resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
 
   reflect.getprototypeof@1.0.10:
     resolution: {integrity: sha512-00o4I+DVrefhv+nX0ulyi3biSHCPDe+yLv5o/p6d/UVlirijB8E16FtfwSAi4g3tcqrQ4lRAqQSoFEZJehYEcw==}
@@ -5562,9 +5505,6 @@ packages:
 
   requires-port@1.0.0:
     resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
-
-  reselect@4.1.8:
-    resolution: {integrity: sha512-ab9EmR80F/zQTMNeneUr4cv+jSwPJgIlvEmVwLerwrWVbpLlBuls9XHzIeTFy4cegU2NHBp3va0LKOzU5qFEYQ==}
 
   resolve-cwd@2.0.0:
     resolution: {integrity: sha512-ccu8zQTrzVr954472aUVPLEcB3YpKSYR3cg/3lo1okzobPBM+1INXBbBZlDbnI/hbEocnf8j0QVo43hQKrbchg==}
@@ -6295,15 +6235,6 @@ packages:
 
   typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
-
-  typescript-compare@0.0.2:
-    resolution: {integrity: sha512-8ja4j7pMHkfLJQO2/8tut7ub+J3Lw2S3061eJLFQcvs3tsmJKp8KG5NtpLn7KcY2w08edF74BSVN7qJS0U6oHA==}
-
-  typescript-logic@0.0.0:
-    resolution: {integrity: sha512-zXFars5LUkI3zP492ls0VskH3TtdeHCqu0i7/duGt60i5IGPIpAHE/DWo5FqJ6EjQ15YKXrt+AETjv60Dat34Q==}
-
-  typescript-tuple@2.2.1:
-    resolution: {integrity: sha512-Zcr0lbt8z5ZdEzERHAMAniTiIKerFCMgd7yjq1fPnDJ43et/k9twIFQMUYff9k5oXcsQ0WpvFcgzK2ZKASoW6Q==}
 
   typescript@3.9.10:
     resolution: {integrity: sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==}
@@ -8065,14 +7996,14 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@material-ui/core@4.12.4(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@material-ui/core@4.12.4(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@babel/runtime': 7.28.4
-      '@material-ui/styles': 4.11.5(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-      '@material-ui/system': 4.12.2(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-      '@material-ui/types': 5.1.0(@types/react@19.2.7)
+      '@material-ui/styles': 4.11.5(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@material-ui/system': 4.12.2(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@material-ui/types': 5.1.0
       '@material-ui/utils': 4.11.3(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-      '@types/react-transition-group': 4.4.12(@types/react@19.2.7)
+      '@types/react-transition-group': 4.4.12
       clsx: 1.2.1
       hoist-non-react-statics: 3.3.2
       popper.js: 1.16.1-lts
@@ -8081,23 +8012,19 @@ snapshots:
       react-dom: 16.14.0(react@16.14.0)
       react-is: 17.0.2
       react-transition-group: 4.4.5(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
-    optionalDependencies:
-      '@types/react': 19.2.7
 
-  '@material-ui/icons@4.11.3(@material-ui/core@4.12.4(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@material-ui/icons@4.11.3(@material-ui/core@4.12.4(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@babel/runtime': 7.28.4
-      '@material-ui/core': 4.12.4(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@material-ui/core': 4.12.4(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
-    optionalDependencies:
-      '@types/react': 19.2.7
 
-  '@material-ui/styles@4.11.5(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@material-ui/styles@4.11.5(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@babel/runtime': 7.28.4
       '@emotion/hash': 0.8.0
-      '@material-ui/types': 5.1.0(@types/react@19.2.7)
+      '@material-ui/types': 5.1.0
       '@material-ui/utils': 4.11.3(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       clsx: 1.2.1
       csstype: 2.6.21
@@ -8113,10 +8040,8 @@ snapshots:
       prop-types: 15.8.1
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
-    optionalDependencies:
-      '@types/react': 19.2.7
 
-  '@material-ui/system@4.12.2(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@material-ui/system@4.12.2(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@babel/runtime': 7.28.4
       '@material-ui/utils': 4.11.3(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
@@ -8124,12 +8049,8 @@ snapshots:
       prop-types: 15.8.1
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
-    optionalDependencies:
-      '@types/react': 19.2.7
 
-  '@material-ui/types@5.1.0(@types/react@19.2.7)':
-    optionalDependencies:
-      '@types/react': 19.2.7
+  '@material-ui/types@5.1.0': {}
 
   '@material-ui/utils@4.11.3(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
@@ -8145,41 +8066,6 @@ snapshots:
       glob-to-regexp: 0.3.0
 
   '@nodelib/fs.stat@1.1.3': {}
-
-  '@redux-saga/core@1.4.2':
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@redux-saga/deferred': 1.3.1
-      '@redux-saga/delay-p': 1.3.1
-      '@redux-saga/is': 1.2.1
-      '@redux-saga/symbols': 1.2.1
-      '@redux-saga/types': 1.3.1
-      typescript-tuple: 2.2.1
-
-  '@redux-saga/deferred@1.3.1': {}
-
-  '@redux-saga/delay-p@1.3.1':
-    dependencies:
-      '@redux-saga/symbols': 1.2.1
-
-  '@redux-saga/is@1.2.1':
-    dependencies:
-      '@redux-saga/symbols': 1.2.1
-      '@redux-saga/types': 1.3.1
-
-  '@redux-saga/symbols@1.2.1': {}
-
-  '@redux-saga/types@1.3.1': {}
-
-  '@reduxjs/toolkit@1.9.7(react-redux@7.2.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(react@16.14.0)':
-    dependencies:
-      immer: 9.0.21
-      redux: 4.2.1
-      redux-thunk: 2.4.2(redux@4.2.1)
-      reselect: 4.1.8
-    optionalDependencies:
-      react: 16.14.0
-      react-redux: 7.2.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
 
   '@rolldown/pluginutils@1.0.0-beta.27': {}
 
@@ -8340,11 +8226,11 @@ snapshots:
       pretty-format: 24.9.0
       redent: 3.0.0
 
-  '@testing-library/react@9.5.0(@types/react@19.2.7)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
+  '@testing-library/react@9.5.0(react-dom@16.14.0(react@16.14.0))(react@16.14.0)':
     dependencies:
       '@babel/runtime': 7.28.4
       '@testing-library/dom': 6.16.0
-      '@types/testing-library__react': 9.1.3(@types/react@19.2.7)
+      '@types/testing-library__react': 9.1.3
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
     transitivePeerDependencies:
@@ -8384,11 +8270,6 @@ snapshots:
       '@types/minimatch': 6.0.0
       '@types/node': 24.10.1
 
-  '@types/hoist-non-react-statics@3.3.7(@types/react@19.2.7)':
-    dependencies:
-      '@types/react': 19.2.7
-      hoist-non-react-statics: 3.3.2
-
   '@types/istanbul-lib-coverage@2.0.6': {}
 
   '@types/istanbul-lib-report@3.0.3':
@@ -8414,24 +8295,9 @@ snapshots:
 
   '@types/q@1.5.8': {}
 
-  '@types/react-dom@19.2.3(@types/react@19.2.7)':
-    dependencies:
-      '@types/react': 19.2.7
+  '@types/react-dom@19.2.3': {}
 
-  '@types/react-redux@7.1.34':
-    dependencies:
-      '@types/hoist-non-react-statics': 3.3.7(@types/react@19.2.7)
-      '@types/react': 19.2.7
-      hoist-non-react-statics: 3.3.2
-      redux: 4.2.1
-
-  '@types/react-transition-group@4.4.12(@types/react@19.2.7)':
-    dependencies:
-      '@types/react': 19.2.7
-
-  '@types/react@19.2.7':
-    dependencies:
-      csstype: 3.2.3
+  '@types/react-transition-group@4.4.12': {}
 
   '@types/stack-utils@1.0.1': {}
 
@@ -8443,9 +8309,9 @@ snapshots:
     dependencies:
       '@testing-library/dom': 6.16.0
 
-  '@types/testing-library__react@9.1.3(@types/react@19.2.7)':
+  '@types/testing-library__react@9.1.3':
     dependencies:
-      '@types/react-dom': 19.2.3(@types/react@19.2.7)
+      '@types/react-dom': 19.2.3
       '@types/testing-library__dom': 7.5.0
       pretty-format: 25.5.0
     transitivePeerDependencies:
@@ -11096,8 +10962,6 @@ snapshots:
 
   immer@1.10.0: {}
 
-  immer@9.0.21: {}
-
   immutable@4.3.7: {}
 
   import-cwd@2.1.0:
@@ -11822,6 +11686,12 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  jotai@2.15.1(@babel/core@7.9.0)(@babel/template@7.27.2)(react@16.14.0):
+    optionalDependencies:
+      '@babel/core': 7.9.0
+      '@babel/template': 7.27.2
+      react: 16.14.0
 
   js-tokens@3.0.2: {}
 
@@ -13421,18 +13291,6 @@ snapshots:
 
   react-is@17.0.2: {}
 
-  react-redux@7.2.9(react-dom@16.14.0(react@16.14.0))(react@16.14.0):
-    dependencies:
-      '@babel/runtime': 7.28.4
-      '@types/react-redux': 7.1.34
-      hoist-non-react-statics: 3.3.2
-      loose-envify: 1.4.0
-      prop-types: 15.8.1
-      react: 16.14.0
-      react-is: 17.0.2
-    optionalDependencies:
-      react-dom: 16.14.0(react@16.14.0)
-
   react-refresh@0.17.0: {}
 
   react-scripts@3.4.1(eslint@6.8.0)(react@16.14.0)(typescript@3.9.10):
@@ -13585,18 +13443,6 @@ snapshots:
       indent-string: 4.0.0
       strip-indent: 3.0.0
 
-  redux-saga@1.4.2:
-    dependencies:
-      '@redux-saga/core': 1.4.2
-
-  redux-thunk@2.4.2(redux@4.2.1):
-    dependencies:
-      redux: 4.2.1
-
-  redux@4.2.1:
-    dependencies:
-      '@babel/runtime': 7.28.4
-
   reflect.getprototypeof@1.0.10:
     dependencies:
       call-bind: 1.0.8
@@ -13713,8 +13559,6 @@ snapshots:
   require-main-filename@2.0.0: {}
 
   requires-port@1.0.0: {}
-
-  reselect@4.1.8: {}
 
   resolve-cwd@2.0.0:
     dependencies:
@@ -14612,16 +14456,6 @@ snapshots:
       reflect.getprototypeof: 1.0.10
 
   typedarray@0.0.6: {}
-
-  typescript-compare@0.0.2:
-    dependencies:
-      typescript-logic: 0.0.0
-
-  typescript-logic@0.0.0: {}
-
-  typescript-tuple@2.2.1:
-    dependencies:
-      typescript-compare: 0.0.2
 
   typescript@3.9.10: {}
 

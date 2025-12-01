@@ -15,3 +15,5 @@ export const distance = (point1, point2) => {
   const sum = sumBy(squaredDifferences, (value) => value);
   return Math.sqrt(sum);
 };
+
+export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

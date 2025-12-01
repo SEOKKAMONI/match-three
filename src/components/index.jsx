@@ -1,14 +1,14 @@
 import React from "react";
 import { App } from "./App";
-import { ReduxProvider } from "./ReduxProvider";
+import { MatchThreeManager } from "./MatchThreeManager";
 import { ThemeProvider } from "./ThemeProvider";
 
 export const Root = () => {
   return (
-    <ReduxProvider>
+    <MatchThreeManager>
       <ThemeProvider>
         <App />
       </ThemeProvider>
-    </ReduxProvider>
+    </MatchThreeManager>
   );
 };

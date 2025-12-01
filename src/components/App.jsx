@@ -4,7 +4,7 @@ import { GameBar } from "./GameBar";
 import { GameBoard } from "./GameBoard";
 import { useDisableZoom } from "./useDisableZoom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({
   root: {
     touchAction: "none",
   },

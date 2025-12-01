@@ -1,28 +1,69 @@
-import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
-import { matchThree } from "./match-three";
-
-const { selectors, actions } = matchThree;
+import { useAtom, useAtomValue } from "jotai";
+import { useCallback, useMemo } from "react";
+import { isAdjacent, isStable, swap } from "./board";
+import { boardAtom, grabbedAtom, statusAtom } from "./atoms";
+import { Status } from "./board";
 
 export const useMatchThree = () => {
-  const rowCount = useSelector(selectors.rowCount);
+  const board = useAtomValue(boardAtom);
+  const [grabbed, setGrabbed] = useAtom(grabbedAtom);
+  const status = useAtomValue(statusAtom);
+  const [, setBoard] = useAtom(boardAtom);
 
-  const columnCount = useSelector(selectors.columnCount);
+  const columnCount = useMemo(() => board?.length ?? 0, [board]);
+  const rowCount = useMemo(() => board?.[0]?.length ?? 0, [board]);
 
-  const board = useSelector(selectors.board);
+  const handleSwap = useCallback(
+    (index1, index2) => {
+      if (!index1 || !index2 || !board) {
+        return;
+      }
 
-  const grabbed = useSelector(selectors.grabbed);
+      if (isAdjacent(index1, index2)) {
+        const previous = board;
+        const swapped = swap(index1, index2, board);
 
-  const status = useSelector(selectors.status);
+        setBoard(swapped);
 
-  const dispatch = useDispatch();
+        if (isStable(swapped)) {
+          setTimeout(() => {
+            setBoard(previous);
+          }, 1000 / 2);
+        }
+      }
+    },
+    [board, setBoard]
+  );
+
+  const grab = useCallback(
+    (index) => {
+      if (status === Status.COLLAPSING) {
+        return;
+      }
+      setGrabbed(index);
+    },
+    [status, setGrabbed]
+  );
+
+  const drop = useCallback(
+    (index) => {
+      const index1 = grabbed;
+      setGrabbed(null);
+
+      if (index1 && status !== Status.COLLAPSING) {
+        handleSwap(index1, index);
+      }
+    },
+    [grabbed, status, setGrabbed, handleSwap]
+  );
 
   return {
-    ...bindActionCreators(actions, dispatch),
-    rowCount,
-    columnCount,
     board,
     grabbed,
     status,
+    grab,
+    drop,
+    rowCount,
+    columnCount,
   };
 };
