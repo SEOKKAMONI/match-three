@@ -6,7 +6,6 @@ import {
   AppBar,
   Toolbar,
 } from "@material-ui/core";
-import React from "react";
 import { Status } from "../match-three";
 import { useMatchThree } from "../match-three/useMatchThree";
 

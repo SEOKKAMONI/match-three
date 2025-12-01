@@ -1,5 +1,4 @@
 import { Container, makeStyles } from "@material-ui/core";
-import React from "react";
 import { GameBar } from "./GameBar";
 import { GameBoard } from "./GameBoard";
 import { useDisableZoom } from "./useDisableZoom";

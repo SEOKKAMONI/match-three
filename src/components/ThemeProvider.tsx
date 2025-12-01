@@ -3,7 +3,7 @@ import {
   CssBaseline,
   MuiThemeProvider,
 } from "@material-ui/core";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 const theme = createMuiTheme({
   palette: {

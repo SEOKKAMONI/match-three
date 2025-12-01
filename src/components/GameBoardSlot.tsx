@@ -1,9 +1,9 @@
 import { Box } from "@material-ui/core";
 import { motion } from "framer-motion";
 import { isEqual } from "lodash-es";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Flipped } from "react-flip-toolkit";
-import { Status, type Item, type Index } from "../match-three";
+import { Status, type Item } from "../match-three";
 import { useMatchThree } from "../match-three/useMatchThree";
 import { GameBoardItem } from "./GameBoardItem";
 

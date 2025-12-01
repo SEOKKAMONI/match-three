@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
 import { AnimatePresence } from "framer-motion";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Flipper } from "react-flip-toolkit";
 import { useMatchThree } from "../match-three/useMatchThree";
 import { GameBoardSlot } from "./GameBoardSlot";
@@ -27,20 +27,20 @@ export const GameBoard = () => {
     >
       <Flipper flipKey={flipKey}>
         <AnimatePresence>
-          {board.map((column, columnIndex) =>
-            column.map((item, rowIndex) =>
-              item ? (
-                <GameBoardSlot
-                  key={item.id}
-                  rowIndex={rowIndex}
-                  columnIndex={columnIndex}
-                  item={item}
-                  boardHeight={boardHeight}
-                  boardWidth={boardWidth}
-                />
-              ) : null
-            )
-          )}
+            {board.map((column, columnIndex) =>
+              column.map((item, rowIndex) =>
+                item ? (
+                  <GameBoardSlot
+                    key={item.id}
+                    rowIndex={rowIndex}
+                    columnIndex={columnIndex}
+                    item={item}
+                    boardHeight={boardHeight}
+                    boardWidth={boardWidth}
+                  />
+                ) : null
+              )
+            )}
         </AnimatePresence>
       </Flipper>
     </Box>

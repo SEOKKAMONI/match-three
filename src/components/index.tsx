@@ -1,4 +1,3 @@
-import React from "react";
 import { App } from "./App";
 import { MatchThreeManager } from "./MatchThreeManager";
 import { ThemeProvider } from "./ThemeProvider";

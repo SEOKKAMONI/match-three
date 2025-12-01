@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 import { blue, green, purple, red, yellow } from "@material-ui/core/colors";
 import { motion } from "framer-motion";
-import React, { useRef } from "react";
-import { ItemType, type Item, type Color } from "../match-three/board";
+import { useRef } from "react";
+import { ItemType, type Color, Item } from "../match-three/board";
 import { useDisableZoom } from "./useDisableZoom";
 
-type MaterialUIColor = typeof red;
+type MaterialUIColor = typeof red | typeof yellow | typeof blue | typeof green | typeof purple;
 
 const muiColorToGradient = (muiColor: MaterialUIColor): string =>
   `radial-gradient(${muiColor[400]}, ${muiColor[900]})`;
@@ -13,14 +13,7 @@ const muiColorToGradient = (muiColor: MaterialUIColor): string =>
 const muiColotToBombGradient = (muiColor: MaterialUIColor): string =>
   `repeating-linear-gradient(${muiColor[400]}, ${muiColor[900]})`;
 
-const colorToMuiColor = (color: Color): MaterialUIColor =>
-  ({
-    red,
-    yellow,
-    blue,
-    green,
-    purple,
-  }[color]);
+const colorToMuiColor = (color: Color): MaterialUIColor => ({ red, yellow, blue, green, purple }[color]);
 
 interface StyleProps {
   color: Color;
@@ -89,19 +82,6 @@ const LineBombItem = ({ item }: ItemProps) => {
   return <div className={classes.lineBomb} />;
 };
 
-export const Item = ({ item }: ItemProps) => {
-  switch (item.type) {
-    case ItemType.LineBomb:
-      return <LineBombItem item={item} />;
-    case ItemType.RadiusBomb:
-      return <RadiusBombItem item={item} />;
-    case ItemType.ColorBomb:
-      return <ColorBombItem item={item} />;
-    default:
-      return <DefaultItem item={item} />;
-  }
-};
-
 export const GameBoardItem = ({ item }: ItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -124,7 +104,18 @@ export const GameBoardItem = ({ item }: ItemProps) => {
         scale: 0,
       }}
     >
-      <Item item={item} />
+      {(() => {
+          switch (item.type) {
+            case ItemType.LineBomb:
+              return <LineBombItem item={item} />;
+            case ItemType.RadiusBomb:
+              return <RadiusBombItem item={item} />;
+            case ItemType.ColorBomb:
+              return <ColorBombItem item={item} />;
+            default:
+              return <DefaultItem item={item} />;
+          }
+        })()}
     </motion.div>
   );
 };
