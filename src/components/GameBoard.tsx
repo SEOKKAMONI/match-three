@@ -1,15 +1,15 @@
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import { AnimatePresence } from "framer-motion";
 import { useRef } from "react";
 import { Flipper } from "react-flip-toolkit";
 import { useMatchThree } from "../match-three/useMatchThree";
 import { GameBoardSlot } from "./GameBoardSlot";
 import { useSize } from "./useSize";
-import { useStylesCursor } from "./useStylesCursor";
+import { useCursorStyle } from "./useCursorStyle";
 
 export const GameBoard = () => {
   const { board, columnCount, rowCount } = useMatchThree();
-  const cursorClassName = useStylesCursor();
+  const cursorStyle = useCursorStyle();
 
   const ref = useRef<HTMLDivElement>(null);
   const [boardWidth] = useSize(ref);
@@ -19,11 +19,13 @@ export const GameBoard = () => {
 
   return (
     <Box
-      className={cursorClassName}
       ref={ref}
-      width="100%"
-      height={boardHeight}
-      position="relative"
+      sx={{
+        ...cursorStyle,
+        width: "100%",
+        height: boardHeight,
+        position: "relative",
+      }}
     >
       <Flipper flipKey={flipKey}>
         <AnimatePresence>

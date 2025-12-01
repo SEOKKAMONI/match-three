@@ -5,7 +5,7 @@ import {
   Typography,
   AppBar,
   Toolbar,
-} from "@material-ui/core";
+} from "@mui/material";
 import { Status } from "../match-three";
 import { useMatchThree } from "../match-three/useMatchThree";
 

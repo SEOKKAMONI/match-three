@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import { motion } from "framer-motion";
 import { isEqual } from "lodash-es";
 import { useState } from "react";

@@ -1,21 +1,13 @@
-import { Container, makeStyles } from "@material-ui/core";
+import { Container } from "@mui/material";
 import { GameBar } from "./GameBar";
 import { GameBoard } from "./GameBoard";
 import { useDisableZoom } from "./useDisableZoom";
 
-const useStyles = makeStyles(() => ({
-  root: {
-    touchAction: "none",
-  },
-}));
-
 export const App = () => {
-  const classes = useStyles();
-
   useDisableZoom(null);
 
   return (
-    <Container maxWidth="xs" disableGutters className={classes.root}>
+    <Container maxWidth="xs" disableGutters={true} sx={{ touchAction: "none" }}>
       <GameBar />
       <GameBoard />
     </Container>

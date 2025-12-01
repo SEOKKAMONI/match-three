@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import { blue, green, purple, red, yellow } from "@material-ui/core/colors";
+import { Box, useTheme } from "@mui/material";
+import { blue, green, purple, red, yellow } from "@mui/material/colors";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ItemType, type Color, Item } from "../match-three/board";
@@ -15,71 +15,73 @@ const muiColotToBombGradient = (muiColor: MaterialUIColor): string =>
 
 const colorToMuiColor = (color: Color): MaterialUIColor => ({ red, yellow, blue, green, purple }[color]);
 
-interface StyleProps {
-  color: Color;
-}
-
-const useStyles = makeStyles((theme) => ({
-  item: {
-    borderRadius: theme.spacing(1),
-    width: "100%",
-    height: "100%",
-    background: ({ color }: StyleProps) => muiColorToGradient(colorToMuiColor(color)),
-  },
-
-  radiusBomb: {
-    width: "100%",
-    height: "100%",
-    borderRadius: "50%",
-    background: ({ color }: StyleProps) => muiColotToBombGradient(colorToMuiColor(color)),
-  },
-
-  colorBomb: {
-    width: "100%",
-    height: "100%",
-    background: "transparent",
-    borderRadius: "50%",
-    border: ({ color }: StyleProps) =>
-      `${theme.spacing(1)}px solid ${colorToMuiColor(color)[600]}`,
-  },
-
-  lineBomb: {
-    borderRadius: theme.spacing(1),
-    width: "100%",
-    height: "100%",
-    background: "transparent",
-
-    border: ({ color }: StyleProps) =>
-      `${theme.spacing(1)}px solid ${colorToMuiColor(color)[600]}`,
-  },
-}));
-
 interface ItemProps {
   item: Item;
 }
 
 const DefaultItem = ({ item }: ItemProps) => {
-  const classes = useStyles({ color: item.color });
+  const theme = useTheme();
+  const muiColor = colorToMuiColor(item.color);
 
-  return <div className={classes.item} />;
+  return (
+    <Box
+      sx={{
+        borderRadius: theme.spacing(1),
+        width: "100%",
+        height: "100%",
+        background: muiColorToGradient(muiColor),
+      }}
+    />
+  );
 };
 
 const RadiusBombItem = ({ item }: ItemProps) => {
-  const classes = useStyles({ color: item.color });
+  const muiColor = colorToMuiColor(item.color);
 
-  return <div className={classes.radiusBomb} />;
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        height: "100%",
+        borderRadius: "50%",
+        background: muiColotToBombGradient(muiColor),
+      }}
+    />
+  );
 };
 
 const ColorBombItem = ({ item }: ItemProps) => {
-  const classes = useStyles({ color: item.color });
+  const theme = useTheme();
+  const muiColor = colorToMuiColor(item.color);
 
-  return <div className={classes.colorBomb} />;
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        height: "100%",
+        background: "transparent",
+        borderRadius: "50%",
+        border: `${theme.spacing(1)} solid ${muiColor[600]}`,
+      }}
+    />
+  );
 };
 
 const LineBombItem = ({ item }: ItemProps) => {
-  const classes = useStyles({ color: item.color });
+  const theme = useTheme();
+  const muiColor = colorToMuiColor(item.color);
 
-  return <div className={classes.lineBomb} />;
+  return (
+    <Box
+      sx={{
+        borderRadius: theme.spacing(1),
+        width: "100%",
+        height: "100%",
+        background: "transparent",
+        border: `${theme.spacing(1)} solid ${muiColor[600]}`,
+      }}
+    />
+  );
 };
 
 export const GameBoardItem = ({ item }: ItemProps) => {

@@ -1,13 +1,13 @@
 import {
-  createMuiTheme,
+  createTheme,
   CssBaseline,
-  MuiThemeProvider,
-} from "@material-ui/core";
+  ThemeProvider as MuiThemeProvider,
+} from "@mui/material";
 import { ReactNode } from "react";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
-    type: "dark",
+    mode: "dark",
     background: {
       default: "#101010",
     },
