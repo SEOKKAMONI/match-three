@@ -2,16 +2,18 @@ import { makeStyles } from "@material-ui/core";
 import { blue, green, purple, red, yellow } from "@material-ui/core/colors";
 import { motion } from "framer-motion";
 import React, { useRef } from "react";
-import { ItemType } from "../match-three/board";
+import { ItemType, type Item, type Color } from "../match-three/board";
 import { useDisableZoom } from "./useDisableZoom";
 
-const muiColorToGradient = (muiColor) =>
+type MaterialUIColor = typeof red;
+
+const muiColorToGradient = (muiColor: MaterialUIColor): string =>
   `radial-gradient(${muiColor[400]}, ${muiColor[900]})`;
 
-const muiColotToBombGradient = (muiColor) =>
+const muiColotToBombGradient = (muiColor: MaterialUIColor): string =>
   `repeating-linear-gradient(${muiColor[400]}, ${muiColor[900]})`;
 
-const colorToMuiColor = (color) =>
+const colorToMuiColor = (color: Color): MaterialUIColor =>
   ({
     red,
     yellow,
@@ -20,19 +22,23 @@ const colorToMuiColor = (color) =>
     purple,
   }[color]);
 
+interface StyleProps {
+  color: Color;
+}
+
 const useStyles = makeStyles((theme) => ({
   item: {
     borderRadius: theme.spacing(1),
     width: "100%",
     height: "100%",
-    background: ({ color }) => muiColorToGradient(colorToMuiColor(color)),
+    background: ({ color }: StyleProps) => muiColorToGradient(colorToMuiColor(color)),
   },
 
   radiusBomb: {
     width: "100%",
     height: "100%",
     borderRadius: "50%",
-    background: ({ color }) => muiColotToBombGradient(colorToMuiColor(color)),
+    background: ({ color }: StyleProps) => muiColotToBombGradient(colorToMuiColor(color)),
   },
 
   colorBomb: {
@@ -40,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     background: "transparent",
     borderRadius: "50%",
-    border: ({ color }) =>
+    border: ({ color }: StyleProps) =>
       `${theme.spacing(1)}px solid ${colorToMuiColor(color)[600]}`,
   },
 
@@ -50,36 +56,40 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     background: "transparent",
 
-    border: ({ color }) =>
+    border: ({ color }: StyleProps) =>
       `${theme.spacing(1)}px solid ${colorToMuiColor(color)[600]}`,
   },
 }));
 
-const DefaultItem = ({ item }) => {
+interface ItemProps {
+  item: Item;
+}
+
+const DefaultItem = ({ item }: ItemProps) => {
   const classes = useStyles({ color: item.color });
 
   return <div className={classes.item} />;
 };
 
-const RadiusBombItem = ({ item }) => {
+const RadiusBombItem = ({ item }: ItemProps) => {
   const classes = useStyles({ color: item.color });
 
   return <div className={classes.radiusBomb} />;
 };
 
-const ColorBombItem = ({ item }) => {
+const ColorBombItem = ({ item }: ItemProps) => {
   const classes = useStyles({ color: item.color });
 
   return <div className={classes.colorBomb} />;
 };
 
-const LineBombItem = ({ item }) => {
+const LineBombItem = ({ item }: ItemProps) => {
   const classes = useStyles({ color: item.color });
 
   return <div className={classes.lineBomb} />;
 };
 
-export const Item = ({ item }) => {
+export const Item = ({ item }: ItemProps) => {
   switch (item.type) {
     case ItemType.LineBomb:
       return <LineBombItem item={item} />;
@@ -92,8 +102,8 @@ export const Item = ({ item }) => {
   }
 };
 
-export const GameBoardItem = ({ item }) => {
-  const ref = useRef();
+export const GameBoardItem = ({ item }: ItemProps) => {
+  const ref = useRef<HTMLDivElement>(null);
 
   useDisableZoom(ref.current);
 

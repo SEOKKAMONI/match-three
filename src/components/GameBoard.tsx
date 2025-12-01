@@ -11,7 +11,7 @@ export const GameBoard = () => {
   const { board, columnCount, rowCount } = useMatchThree();
   const cursorClassName = useStylesCursor();
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
   const [boardWidth] = useSize(ref);
   const boardHeight = (boardWidth / columnCount) * rowCount;
 

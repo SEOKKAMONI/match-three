@@ -6,7 +6,9 @@ const BOMB_RADIUS = 1.5;
 
 export const Status = {
   COLLAPSING: "COLLAPSING",
-};
+} as const;
+
+export type StatusType = typeof Status[keyof typeof Status] | null;
 
 export const Colors = {
   Red: "red",
@@ -14,11 +16,13 @@ export const Colors = {
   Yellow: "yellow",
   Green: "green",
   Purple: "purple",
-};
+} as const;
+
+export type Color = typeof Colors[keyof typeof Colors];
 
 export const COLORS = Object.values(Colors);
 
-const createRandomColor = () => {
+const createRandomColor = (): Color => {
   return randomNth(COLORS);
 };
 
@@ -26,38 +30,49 @@ export const ItemType = {
   ColorBomb: "ColorBomb",
   RadiusBomb: "RadiusBomb",
   LineBomb: "LineBomb",
-};
+} as const;
 
-const createRandomItemType = () => {
+export type ItemTypeValue = typeof ItemType[keyof typeof ItemType];
+
+const createRandomItemType = (): ItemTypeValue | null => {
   return Math.random() <= 1 / 20 ? randomNth(Object.values(ItemType)) : null;
 };
 
-export const createRandomItem = () => ({
+export interface Item {
+  id: string;
+  color: Color;
+  type: ItemTypeValue | null;
+}
+
+export type Board = (Item | null)[][];
+export type Index = [number, number];
+
+export const createRandomItem = (): Item => ({
   id: createId(),
   color: createRandomColor(),
   type: createRandomItemType(),
 });
 
-export const createRandomBoard = (rowCount = 7, columnCount = 7) =>
+export const createRandomBoard = (rowCount = 7, columnCount = 7): Board =>
   times(rowCount, () => times(columnCount, () => createRandomItem()));
 
-const mergeColumns = (col1, col2) =>
-  zipWith(col1, col2, (item1, item2) =>
+const mergeColumns = (col1: (Item | null)[], col2: (Item | null)[]): (Item | null)[] =>
+  zipWith(col1, col2, (item1: Item | null, item2: Item | null) =>
     isNil(item1) || isNil(item2) ? null : item1
   );
 
-const mergeBoards = (board1, board2) =>
-  zipWith(board1, board2, (col1, col2) => mergeColumns(col1, col2));
+const mergeBoards = (board1: Board, board2: Board): Board =>
+  zipWith(board1, board2, (col1: (Item | null)[], col2: (Item | null)[]) => mergeColumns(col1, col2));
 
-const toColumnCount = (board) => board.length;
+const toColumnCount = (board: Board): number => board.length;
 
-const toRowCount = (board) => board[0]?.length ?? 0;
+const toRowCount = (board: Board): number => board[0]?.length ?? 0;
 
 const toIndexes = memoize(
-  (board) => {
+  (board: Board): Index[] => {
     const colCount = toColumnCount(board);
     const rowCount = toRowCount(board);
-    const result = [];
+    const result: Index[] = [];
     for (let i = 0; i < colCount; i++) {
       for (let j = 0; j < rowCount; j++) {
         result.push([i, j]);
@@ -65,16 +80,16 @@ const toIndexes = memoize(
     }
     return result;
   },
-  (board) => `${toColumnCount(board)},${toRowCount(board)}`
+  (board: Board) => `${toColumnCount(board)},${toRowCount(board)}`
 );
 
-const toIndexesWhere = (predicate, board) =>
-  toIndexes(board).filter((index) => {
-    const item = board[index[0]]?.[index[1]];
+const toIndexesWhere = (predicate: (index: Index, item: Item | null) => boolean, board: Board): Index[] =>
+  toIndexes(board).filter((index: Index) => {
+    const item = board[index[0]]?.[index[1]] ?? null;
     return predicate(index, item);
   });
 
-const setIndex = (index, value, board) => {
+const setIndex = (index: Index, value: Item | null, board: Board): Board => {
   const newBoard = board.map((col) => [...col]);
   if (newBoard[index[0]]) {
     newBoard[index[0]][index[1]] = value;
@@ -82,13 +97,13 @@ const setIndex = (index, value, board) => {
   return newBoard;
 };
 
-const groupByAdjacentColor = (column) => {
+const groupByAdjacentColor = (column: (Item | null)[]): (Item | null)[][] => {
   if (!column || column.length === 0) {
     return [];
   }
 
-  const groups = [];
-  let currentGroup = [column[0]];
+  const groups: (Item | null)[][] = [];
+  let currentGroup: (Item | null)[] = [column[0]];
 
   for (let i = 1; i < column.length; i++) {
     const prevColor = column[i - 1]?.color;
@@ -106,7 +121,7 @@ const groupByAdjacentColor = (column) => {
   return groups;
 };
 
-const clearColumnMatchings = (board) =>
+const clearColumnMatchings = (board: Board): Board =>
   board.map((column) => {
     const groups = groupByAdjacentColor(column);
     const processedGroups = groups.map((group) =>
@@ -115,16 +130,16 @@ const clearColumnMatchings = (board) =>
     return flatten(processedGroups);
   });
 
-const transpose = (board) => {
+const transpose = (board: Board): Board => {
   if (!board || board.length === 0 || !board[0]) {
     return [];
   }
   const rowCount = board[0].length;
   const colCount = board.length;
-  const result = [];
+  const result: Board = [];
 
   for (let i = 0; i < rowCount; i++) {
-    const row = [];
+    const row: (Item | null)[] = [];
     for (let j = 0; j < colCount; j++) {
       row.push(board[j][i]);
     }
@@ -134,30 +149,30 @@ const transpose = (board) => {
   return result;
 };
 
-const clearRowMatchings = (board) => {
+const clearRowMatchings = (board: Board): Board => {
   const transposed = transpose(board);
   const cleared = clearColumnMatchings(transposed);
   return transpose(cleared);
 };
 
-const clearMatchings = (board) =>
+const clearMatchings = (board: Board): Board =>
   mergeBoards(clearRowMatchings(board), clearColumnMatchings(board));
 
-const toMatchingIndexes = (board) =>
+const toMatchingIndexes = (board: Board): Index[] =>
   toIndexesWhere((_, item) => isNil(item), clearMatchings(board));
 
-const toRowMatchingIndexes = (board) =>
+const toRowMatchingIndexes = (board: Board): Index[] =>
   toIndexesWhere((_, item) => isNil(item), clearRowMatchings(board));
 
-const toColumnMatchingIndexes = (board) =>
+const toColumnMatchingIndexes = (board: Board): Index[] =>
   toIndexesWhere((_, item) => isNil(item), clearColumnMatchings(board));
 
-const isRadiusBomb = (item) => item?.type === ItemType.RadiusBomb;
+const isRadiusBomb = (item: Item | null): boolean => item?.type === ItemType.RadiusBomb;
 
-const toRadiusBombIndexes = (board) =>
+const toRadiusBombIndexes = (board: Board): Index[] =>
   toIndexesWhere((_, item) => isRadiusBomb(item), board);
 
-const clearRadius = (index1, board) => {
+const clearRadius = (index1: Index, board: Board): Board => {
   let result = board;
   const indexesToClear = toIndexesWhere(
     (index2) => distance(index1, index2) <= BOMB_RADIUS,
@@ -171,7 +186,7 @@ const clearRadius = (index1, board) => {
   return result;
 };
 
-const clearRadiusBombs = (board) => {
+const clearRadiusBombs = (board: Board): Board => {
   const matchingIndexes = toMatchingIndexes(board);
   const bombIndexes = toRadiusBombIndexes(board);
   const intersected = intersection(matchingIndexes, bombIndexes);
@@ -184,17 +199,17 @@ const clearRadiusBombs = (board) => {
   return result;
 };
 
-const isColorBomb = (item) => item?.type === ItemType.ColorBomb;
+const isColorBomb = (item: Item | null): boolean => item?.type === ItemType.ColorBomb;
 
-const toColorBombIndexes = (board) =>
+const toColorBombIndexes = (board: Board): Index[] =>
   toIndexesWhere((_, item) => isColorBomb(item), board);
 
-const clearColor = (color, board) =>
+const clearColor = (color: Color, board: Board): Board =>
   board.map((column) =>
     column.map((item) => (item?.color === color ? null : item))
   );
 
-const clearColorBombs = (board) => {
+const clearColorBombs = (board: Board): Board => {
   const matchingIndexes = toMatchingIndexes(board);
   const bombIndexes = toColorBombIndexes(board);
   const intersected = intersection(matchingIndexes, bombIndexes);
@@ -202,18 +217,20 @@ const clearColorBombs = (board) => {
   let result = board;
   for (const index of intersected) {
     const color = board[index[0]]?.[index[1]]?.color;
-    result = clearColor(color, result);
+    if (color) {
+      result = clearColor(color, result);
+    }
   }
 
   return result;
 };
 
-const isLineBomb = (item) => item?.type === ItemType.LineBomb;
+const isLineBomb = (item: Item | null): boolean => item?.type === ItemType.LineBomb;
 
-const toLineBombIndexes = (board) =>
+const toLineBombIndexes = (board: Board): Index[] =>
   toIndexesWhere((_, item) => isLineBomb(item), board);
 
-const clearColumn = (columnIndex, board) => {
+const clearColumn = (columnIndex: number, board: Board): Board => {
   const indexesToClear = toIndexesWhere(
     (index) => index[0] === columnIndex,
     board
@@ -227,7 +244,7 @@ const clearColumn = (columnIndex, board) => {
   return result;
 };
 
-const clearColumnLineBombs = (board) => {
+const clearColumnLineBombs = (board: Board): Board => {
   const columnMatching = toColumnMatchingIndexes(board);
   const bombIndexes = toLineBombIndexes(board);
   const intersected = intersection(columnMatching, bombIndexes);
@@ -240,7 +257,7 @@ const clearColumnLineBombs = (board) => {
   return result;
 };
 
-const clearRow = (rowIndex, board) => {
+const clearRow = (rowIndex: number, board: Board): Board => {
   const indexesToClear = toIndexesWhere((index) => index[1] === rowIndex, board);
 
   let result = board;
@@ -251,7 +268,7 @@ const clearRow = (rowIndex, board) => {
   return result;
 };
 
-const clearRowLineBombs = (board) => {
+const clearRowLineBombs = (board: Board): Board => {
   const rowMatching = toRowMatchingIndexes(board);
   const bombIndexes = toLineBombIndexes(board);
   const intersected = intersection(rowMatching, bombIndexes);
@@ -264,7 +281,7 @@ const clearRowLineBombs = (board) => {
   return result;
 };
 
-export const clear = (board) => {
+export const clear = (board: Board): Board => {
   const boards = [
     clearMatchings(board),
     clearRadiusBombs(board),
@@ -277,22 +294,22 @@ export const clear = (board) => {
 };
 
 
-export const collapse = (board) =>
+export const collapse = (board: Board): Board =>
   board.map((column) => sortBy(column, (item) => (isNil(item) ? 0 : 1)));
 
-export const fill = (board) =>
+export const fill = (board: Board): Board =>
   board.map((column) =>
     column.map((item) => (isNil(item) ? createRandomItem() : item))
   );
 
 
-export const isStable = (board) => {
+export const isStable = (board: Board): boolean => {
   const cleared = clear(board);
   return JSON.stringify(board) === JSON.stringify(cleared);
 };
 
 
-export const swap = (index1, index2, board) => {
+export const swap = (index1: Index, index2: Index, board: Board): Board => {
   const value1 = board[index1[0]]?.[index1[1]];
   const value2 = board[index2[0]]?.[index2[1]];
 
@@ -302,4 +319,4 @@ export const swap = (index1, index2, board) => {
   return result;
 };
 
-export const isAdjacent = (index1, index2) => distance(index1, index2) === 1;
+export const isAdjacent = (index1: Index, index2: Index): boolean => distance(index1, index2) === 1;

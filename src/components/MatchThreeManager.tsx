@@ -1,10 +1,14 @@
 import { useAtomValue } from "jotai";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { boardAtom, grabbedAtom } from "../match-three/atoms";
 import { useMatchThreeInit } from "../match-three/useMatchThreeInit";
 import { useMatchThreeCascade } from "../match-three/useMatchThreeCascade";
 
-export const MatchThreeManager = ({ children }) => {
+interface MatchThreeManagerProps {
+  children: ReactNode;
+}
+
+export const MatchThreeManager = ({ children }: MatchThreeManagerProps) => {
   useMatchThreeInit();
   const board = useAtomValue(boardAtom);
   const grabbed = useAtomValue(grabbedAtom);

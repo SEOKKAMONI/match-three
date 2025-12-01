@@ -1,6 +1,6 @@
 import { useAtom, useAtomValue } from "jotai";
 import { useCallback, useMemo } from "react";
-import { isAdjacent, isStable, swap } from "./board";
+import { isAdjacent, isStable, swap, type Index } from "./board";
 import { boardAtom, grabbedAtom, statusAtom } from "./atoms";
 import { Status } from "./board";
 
@@ -14,7 +14,7 @@ export const useMatchThree = () => {
   const rowCount = useMemo(() => board?.[0]?.length ?? 0, [board]);
 
   const handleSwap = useCallback(
-    (index1, index2) => {
+    (index1: Index | null, index2: Index | null) => {
       if (!index1 || !index2 || !board) {
         return;
       }
@@ -36,7 +36,7 @@ export const useMatchThree = () => {
   );
 
   const grab = useCallback(
-    (index) => {
+    (index: Index) => {
       if (status === Status.COLLAPSING) {
         return;
       }
@@ -46,7 +46,7 @@ export const useMatchThree = () => {
   );
 
   const drop = useCallback(
-    (index) => {
+    (index: Index) => {
       const index1 = grabbed;
       setGrabbed(null);
 

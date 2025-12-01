@@ -4,7 +4,7 @@ import { GameBar } from "./GameBar";
 import { GameBoard } from "./GameBoard";
 import { useDisableZoom } from "./useDisableZoom";
 
-const useStyles = makeStyles(({
+const useStyles = makeStyles(() => ({
   root: {
     touchAction: "none",
   },
@@ -13,7 +13,7 @@ const useStyles = makeStyles(({
 export const App = () => {
   const classes = useStyles();
 
-  useDisableZoom();
+  useDisableZoom(null);
 
   return (
     <Container maxWidth="xs" disableGutters className={classes.root}>

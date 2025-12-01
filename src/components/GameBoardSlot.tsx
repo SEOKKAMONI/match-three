@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import { isEqual } from "lodash-es";
 import React, { useState } from "react";
 import { Flipped } from "react-flip-toolkit";
-import { Status } from "../match-three";
+import { Status, type Item, type Index } from "../match-three";
 import { useMatchThree } from "../match-three/useMatchThree";
 import { GameBoardItem } from "./GameBoardItem";
 
-const toPercent = (decimal) => `${decimal * 100}%`;
+const toPercent = (decimal: number): string => `${decimal * 100}%`;
 
 const selectedVariants = {
   notSelected: {
@@ -24,7 +24,15 @@ const selectedVariants = {
   },
 };
 
-export const GameBoardSlot = (props) => {
+interface GameBoardSlotProps {
+  rowIndex: number;
+  columnIndex: number;
+  boardHeight: number;
+  boardWidth: number;
+  item: Item;
+}
+
+export const GameBoardSlot = (props: GameBoardSlotProps) => {
   const { rowIndex, columnIndex, boardHeight, boardWidth, item } = props;
 
   const {
@@ -62,7 +70,7 @@ export const GameBoardSlot = (props) => {
   };
 
   const styles = {
-    position: "absolute",
+    position: "absolute" as const,
     top: toPercent(rowIndex / rowCount),
     left: toPercent(columnIndex / columnCount),
     width: boardWidth / columnCount,

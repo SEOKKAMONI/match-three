@@ -2,18 +2,18 @@
 
 import { useEffect } from "react";
 
-export const useDisableZoom = (element) => {
+export const useDisableZoom = (element: HTMLElement | null) => {
   useEffect(() => {
     if (!element) {
       return;
     }
 
-    const handleClick = (event) => {
+    const handleClick = (event: MouseEvent) => {
       event.preventDefault();
       event.stopPropagation();
     };
 
-    const handleTouch = (event) => {
+    const handleTouch = (event: TouchEvent) => {
       if (event.touches.length > 1) {
         event.preventDefault();
         event.stopPropagation();
